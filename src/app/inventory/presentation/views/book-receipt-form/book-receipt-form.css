@@ -1,0 +1,26 @@
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.form-card {
+  max-width: 640px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.error {
+  color: #b3261e;
+  margin: 0;
+}

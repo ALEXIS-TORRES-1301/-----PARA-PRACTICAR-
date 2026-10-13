@@ -39,8 +39,9 @@ export class InventoryStore {
    *
    * @param bookStock - The book stock to register.
    * @param onCreated - Callback invoked after the record is persisted.
+   * @param onFailed - Callback invoked when the record could not be persisted.
    */
-  addBookStock = (bookStock: BookStock, onCreated?: () => void): void => {
+  addBookStock = (bookStock: BookStock, onCreated?: () => void, onFailed?: () => void): void => {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     this.inventoryApi.createBookStock(bookStock).subscribe({
@@ -52,6 +53,7 @@ export class InventoryStore {
       error: err => {
         this.errorSignal.set(this.formatError(err, 'Failed to register book stock'));
         this.loadingSignal.set(false);
+        onFailed?.();
       }
     });
   };
