@@ -1,0 +1,10 @@
+<mat-button-toggle-group [value]="currentLang()"
+                         [attr.aria-label]="'app.language' | translate"
+                         hideSingleSelectionIndicator
+                         name="language">
+  @for (language of languages; track language) {
+    <mat-button-toggle [value]="language" (change)="useLanguage(language)">
+      {{ language.toUpperCase() }}
+    </mat-button-toggle>
+  }
+</mat-button-toggle-group>
