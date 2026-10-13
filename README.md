@@ -7,7 +7,7 @@ Prácticas del examen parcial, resueltas con la arquitectura del proyecto **lear
 | Carpeta | Caso | Contenido |
 |---|---|---|
 | `01-barnes-noble/` | Barnes & Noble (inventario de librerías + Open Library) | Solución, zip y guía completa de WebStorm (cuenta, repo, commits y entrega) |
-| `02-brewdog/` | BrewDog (órdenes de despacho + Open Brewery DB) | Solución, zip y guía específica con los 25 commits |
+| `02-brewdog/` | BrewDog (órdenes de despacho + Open Brewery DB) | Solución, zip, guía resumida y **tutorial paso a paso con el código de cada archivo** (`TUTORIAL-BREWDOG-PASO-A-PASO.md`) |
 
 Cada solución se ejecuta así:
 
