@@ -1,0 +1,65 @@
+{
+  "app": {
+    "title": "Barnes & Noble Inventory Platform",
+    "logo-alt": "Barnes & Noble logo",
+    "toggle-menu": "Toggle navigation menu",
+    "language": "Preferred language",
+    "navigation": "Main navigation"
+  },
+  "option": {
+    "bookstore-overview": "Bookstore Overview",
+    "receive-books": "Receive Books"
+  },
+  "specialties": {
+    "fantasy": "Fantasy",
+    "science-fiction": "Science Fiction",
+    "history": "History",
+    "mystery": "Mystery",
+    "romance": "Romance",
+    "science": "Science"
+  },
+  "bookstore-overview": {
+    "title": "Bookstore Overview",
+    "content": "Monitor Book Availability Across Our Stores",
+    "store-inventory": "Store Inventory",
+    "loading": "Loading inventory...",
+    "no-bookstores": "No bookstores found."
+  },
+  "bookstore-summary": {
+    "book-title": "Title",
+    "copies": "Copies",
+    "last-received": "Last received {{ date }}",
+    "empty": "Empty",
+    "available-titles": "Available Titles",
+    "replenishment-required": "Replenishment Required",
+    "minimum-copies": "Minimum copies: {{ minimum }}"
+  },
+  "book-receipt": {
+    "title": "Receive Books",
+    "subtitle": "Register Books to Your Bookstore",
+    "form-label": "Book receipt form",
+    "specialty": "Specialty",
+    "book": "Book",
+    "copies": "Copies",
+    "bookstore": "Destination bookstore: {{ name }}",
+    "copies-hint": "Between 1 and {{ max }} copies",
+    "loading-books": "Loading books...",
+    "receive": "Receive",
+    "cancel": "Cancel",
+    "error": {
+      "specialty-required": "Specialty is required",
+      "book-required": "Book is required",
+      "copies-required": "Copies is required",
+      "copies-integer": "Copies must be a whole number",
+      "copies-min": "Copies must be greater than 0",
+      "copies-max": "Copies must not exceed {{ max }}",
+      "books-unavailable": "Books could not be loaded. Try again later.",
+      "save-failed": "The book stock could not be registered. Try again."
+    }
+  },
+  "page-not-found": {
+    "title": "Page not found",
+    "content": "The path <strong>/{{ invalid_path }}</strong> was not found.",
+    "go-back": "Back to Bookstore Overview"
+  }
+}

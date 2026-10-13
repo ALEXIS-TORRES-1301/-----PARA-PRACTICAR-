@@ -1,0 +1,65 @@
+{
+  "app": {
+    "title": "Barnes & Noble Inventory Platform",
+    "logo-alt": "Logo de Barnes & Noble",
+    "toggle-menu": "Mostrar u ocultar menú de navegación",
+    "language": "Idioma preferido",
+    "navigation": "Navegación principal"
+  },
+  "option": {
+    "bookstore-overview": "Resumen de Librerías",
+    "receive-books": "Recibir Libros"
+  },
+  "specialties": {
+    "fantasy": "Fantasía",
+    "science-fiction": "Ciencia Ficción",
+    "history": "Historia",
+    "mystery": "Misterio",
+    "romance": "Romance",
+    "science": "Ciencia"
+  },
+  "bookstore-overview": {
+    "title": "Resumen de Librerías",
+    "content": "Monitoree la disponibilidad de libros en nuestras tiendas",
+    "store-inventory": "Inventario de Tiendas",
+    "loading": "Cargando inventario...",
+    "no-bookstores": "No se encontraron librerías."
+  },
+  "bookstore-summary": {
+    "book-title": "Título",
+    "copies": "Copias",
+    "last-received": "Última recepción {{ date }}",
+    "empty": "Vacío",
+    "available-titles": "Títulos Disponibles",
+    "replenishment-required": "Reposición Requerida",
+    "minimum-copies": "Copias mínimas: {{ minimum }}"
+  },
+  "book-receipt": {
+    "title": "Recibir Libros",
+    "subtitle": "Registre libros en su librería",
+    "form-label": "Formulario de recepción de libros",
+    "specialty": "Especialidad",
+    "book": "Libro",
+    "copies": "Copias",
+    "bookstore": "Librería de destino: {{ name }}",
+    "copies-hint": "Entre 1 y {{ max }} copias",
+    "loading-books": "Cargando libros...",
+    "receive": "Recibir",
+    "cancel": "Cancelar",
+    "error": {
+      "specialty-required": "La especialidad es obligatoria",
+      "book-required": "El libro es obligatorio",
+      "copies-required": "Las copias son obligatorias",
+      "copies-integer": "Las copias deben ser un número entero",
+      "copies-min": "Las copias deben ser mayores que 0",
+      "copies-max": "Las copias no deben exceder {{ max }}",
+      "books-unavailable": "No se pudieron cargar los libros. Intente más tarde.",
+      "save-failed": "No se pudo registrar el stock. Intente nuevamente."
+    }
+  },
+  "page-not-found": {
+    "title": "Página no encontrada",
+    "content": "La ruta <strong>/{{ invalid_path }}</strong> no fue encontrada.",
+    "go-back": "Volver al Resumen de Librerías"
+  }
+}
