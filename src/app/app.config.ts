@@ -3,7 +3,11 @@ import {provideRouter, withComponentInputBinding} from '@angular/router';
 import {provideHttpClient} from '@angular/common/http';
 import {provideTranslateService} from '@ngx-translate/core';
 import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
+import {registerLocaleData} from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 import {routes} from './app.routes';
+
+registerLocaleData(localeEs);
 
 /**
  * Application-wide provider configuration for routing, HTTP, and localization.
