@@ -153,7 +153,7 @@ Prueba rápida: ejecuta `ng serve`, abre http://localhost:4200, comprueba que ca
 5. Haz clic en **Commit and Push…** (o **Commit**, y luego **`Ctrl + Shift + K`** para hacer push).
 6. Para revisar tu historial abre **`Alt + 9`** (ventana Git) → pestaña **Log**. Debe verse una escalera de commits espaciados en el tiempo.
 
-**Ritmo:** un commit cada **10 a 15 minutos**, unos 25 en total (la lista exacta está en la sección 7). Haz push al menos cada 2 o 3 commits.
+**Ritmo:** un commit cada **5 a 10 minutos**, unos 25 en total (la lista exacta está en la sección 7). Haz push al menos cada 2 o 3 commits.
 
 **Atajos útiles**
 
