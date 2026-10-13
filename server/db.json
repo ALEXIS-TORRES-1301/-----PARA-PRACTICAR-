@@ -1,0 +1,23 @@
+{
+  "bookstores": [
+    { "id": 1, "name": "Barnes & Noble Union Square", "specialty": "fantasy", "minimumCopies": 10 },
+    { "id": 2, "name": "Barnes & Noble Fifth Avenue", "specialty": "science_fiction", "minimumCopies": 8 },
+    { "id": 3, "name": "Barnes & Noble The Grove", "specialty": "history", "minimumCopies": 6 },
+    { "id": 4, "name": "Barnes & Noble Lincoln Park", "specialty": "mystery", "minimumCopies": 5 },
+    { "id": 5, "name": "Barnes & Noble Pentagon City", "specialty": "romance", "minimumCopies": 7 },
+    { "id": 6, "name": "Barnes & Noble Palo Alto", "specialty": "science", "minimumCopies": 4 }
+  ],
+  "book-stocks": [
+    { "id": 1, "bookstoreId": 1, "bookKey": "/works/OL27448W", "bookTitle": "The Lord of the Rings", "authorName": "J. R. R. Tolkien", "copies": 4, "receivedAt": "2026-09-02T10:15:00" },
+    { "id": 2, "bookstoreId": 1, "bookKey": "/works/OL27448W", "bookTitle": "The Lord of the Rings", "authorName": "J. R. R. Tolkien", "copies": 3, "receivedAt": "2026-09-20T16:40:00" },
+    { "id": 3, "bookstoreId": 1, "bookKey": "/works/OL82563W", "bookTitle": "Harry Potter and the Philosopher's Stone", "authorName": "J. K. Rowling", "copies": 12, "receivedAt": "2026-09-05T09:00:00" },
+    { "id": 4, "bookstoreId": 1, "bookKey": "/works/OL262758W", "bookTitle": "The Hobbit", "authorName": "J. R. R. Tolkien", "copies": 15, "receivedAt": "2026-10-01T11:30:00" },
+    { "id": 5, "bookstoreId": 2, "bookKey": "/works/OL893415W", "bookTitle": "Dune", "authorName": "Frank Herbert", "copies": 5, "receivedAt": "2026-08-28T14:00:00" },
+    { "id": 6, "bookstoreId": 2, "bookKey": "/works/OL1168083W", "bookTitle": "Nineteen Eighty-Four", "authorName": "George Orwell", "copies": 9, "receivedAt": "2026-09-12T12:00:00" },
+    { "id": 7, "bookstoreId": 3, "bookKey": "/works/OL455327W", "bookTitle": "The Histories", "authorName": "Herodotus", "copies": 2, "receivedAt": "2026-09-15T08:45:00" },
+    { "id": 8, "bookstoreId": 3, "bookKey": "/works/OL455327W", "bookTitle": "The Histories", "authorName": "Herodotus", "copies": 2, "receivedAt": "2026-10-03T17:20:00" },
+    { "id": 9, "bookstoreId": 4, "bookKey": "/works/OL471576W", "bookTitle": "The Hound of the Baskervilles", "authorName": "Arthur Conan Doyle", "copies": 6, "receivedAt": "2026-09-08T13:10:00" },
+    { "id": 10, "bookstoreId": 4, "bookKey": "/works/OL4310452W", "bookTitle": "And Then There Were None", "authorName": "Agatha Christie", "copies": 3, "receivedAt": "2026-09-25T10:05:00" },
+    { "id": 11, "bookstoreId": 5, "bookKey": "/works/OL66554W", "bookTitle": "Pride and Prejudice", "authorName": "Jane Austen", "copies": 8, "receivedAt": "2026-09-18T15:30:00" }
+  ]
+}
