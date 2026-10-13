@@ -11,6 +11,10 @@
   z-index: 2;
 }
 
+.toolbar .mat-mdc-icon-button {
+  --mat-icon-button-icon-color: #ffffff;
+}
+
 .logo {
   border-radius: 4px;
   background-color: #ffffff;
