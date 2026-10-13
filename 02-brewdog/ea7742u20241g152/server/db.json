@@ -1,0 +1,87 @@
+{
+  "dispatch-hubs": [
+    {
+      "id": 1,
+      "name": "BrewDog Micro Dispatch Center",
+      "breweryType": "micro",
+      "maxTonnage": 850
+    },
+    {
+      "id": 2,
+      "name": "BrewDog Regional Freight Hub",
+      "breweryType": "regional",
+      "maxTonnage": 3400
+    },
+    {
+      "id": 3,
+      "name": "BrewDog Brewpub Logistics Terminal",
+      "breweryType": "brewpub",
+      "maxTonnage": 600
+    },
+    {
+      "id": 4,
+      "name": "BrewDog Nano Experimental Depot",
+      "breweryType": "nano",
+      "maxTonnage": 300
+    },
+    {
+      "id": 5,
+      "name": "BrewDog Main Industrial Port",
+      "breweryType": "large",
+      "maxTonnage": 7500
+    },
+    {
+      "id": 6,
+      "name": "BrewDog Contract Alliance Center",
+      "breweryType": "contract",
+      "maxTonnage": 1800
+    }
+  ],
+  "dispatch-orders": [
+    {
+      "id": 1,
+      "dispatchHubId": 1,
+      "breweryType": "micro",
+      "breweryId": "b54b16e1-879b-4dfa-b128-48b49e6f3d9b",
+      "breweryName": "North Coast Brewing Co.",
+      "assignedTonnage": 210,
+      "dispatchedAt": "2026-10-10T06:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "dispatchHubId": 1,
+      "breweryType": "micro",
+      "breweryId": "dad27f6e-6281-42ab-b620-1a1343b67711",
+      "breweryName": "Hair of the Dog Brewing",
+      "assignedTonnage": 180,
+      "dispatchedAt": "2026-10-11T11:15:00.000Z"
+    },
+    {
+      "id": 3,
+      "dispatchHubId": 2,
+      "breweryType": "regional",
+      "breweryId": "7136f332-6281-42ab-b620-1a1343b67705",
+      "breweryName": "Deschutes Brewery",
+      "assignedTonnage": 950,
+      "dispatchedAt": "2026-10-12T04:45:00.000Z"
+    },
+    {
+      "id": 4,
+      "dispatchHubId": 5,
+      "breweryType": "large",
+      "breweryId": "9988f332-9181-42ab-b620-1a1343b67999",
+      "breweryName": "Sierra Nevada Brewing Co.",
+      "assignedTonnage": 2400,
+      "dispatchedAt": "2026-10-12T14:20:00.000Z"
+    },
+    {
+      "id": 5,
+      "dispatchHubId": 2,
+      "breweryType": "regional",
+      "breweryId": "3344f332-1181-42ab-b620-1a1343b67222",
+      "breweryName": "Stone Brewing",
+      "assignedTonnage": 1100,
+      "dispatchedAt": "2026-10-13T07:10:00.000Z"
+    }
+  ]
+}

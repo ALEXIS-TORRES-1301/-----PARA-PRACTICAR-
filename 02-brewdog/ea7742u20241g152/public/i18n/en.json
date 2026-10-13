@@ -1,0 +1,70 @@
+{
+  "app": {
+    "logo-alt": "BrewDog logo",
+    "toggle-menu": "Toggle navigation menu",
+    "language": "Preferred language",
+    "navigation": "Main navigation"
+  },
+  "option": {
+    "home": "Home",
+    "new-dispatch-order": "New Dispatch Order"
+  },
+  "brewery-types": {
+    "micro": "Micro",
+    "nano": "Nano",
+    "regional": "Regional",
+    "brewpub": "Brewpub",
+    "large": "Large",
+    "contract": "Contract"
+  },
+  "home": {
+    "title": "Home",
+    "content": "Advanced Dispatch Order and Tonnage Management for Logistics Hubs.",
+    "my-dispatch-hubs": "My Dispatch Hubs",
+    "loading": "Loading dispatch hubs...",
+    "no-dispatch-hubs": "No dispatch hubs found."
+  },
+  "dispatch-hub-summary": {
+    "max-tonnage": "Max tonnage: {{ tonnage }} t",
+    "orders": "Dispatch orders of {{ name }}",
+    "tonnage-value": "{{ tonnage }} t",
+    "dispatched-at": "Dispatched {{ date }}",
+    "empty": "Empty",
+    "total-dispatched-tonnage": "Total Dispatched Tonnage",
+    "available-tonnage-capacity": "Available Tonnage Capacity"
+  },
+  "dispatch-order": {
+    "title": "New Dispatch Order",
+    "subtitle": "Register Freight Dispatch Order to Your Hub",
+    "form-label": "New dispatch order form",
+    "brewery-type": "Brewery Type",
+    "brewery": "Destination Brewery",
+    "assigned-tonnage": "Assigned Tonnage (t)",
+    "dispatch-hub": "Dispatch hub: {{ name }}",
+    "tonnage-hint": "Available capacity: {{ capacity }} t",
+    "loading-breweries": "Loading breweries...",
+    "create": "Create",
+    "cancel": "Cancel",
+    "error": {
+      "brewery-type-required": "Brewery type is required",
+      "brewery-required": "Destination brewery is required",
+      "assigned-tonnage-required": "Assigned tonnage is required",
+      "assigned-tonnage-min": "Assigned tonnage must be greater than 0",
+      "assigned-tonnage-max": "Assigned tonnage must not exceed the available capacity of {{ capacity }} t",
+      "no-capacity": "This dispatch hub has no available tonnage capacity.",
+      "breweries-unavailable": "Breweries could not be loaded. Try again later.",
+      "save-failed": "The dispatch order could not be created. Try again."
+    }
+  },
+  "footer": {
+    "about": "BrewDog Dispatch Logistics Platform · Global distribution of craft beer since 2007.",
+    "rights": "Copyright © 2026 BrewDog. All rights reserved.",
+    "network-status": "Distribution network status:",
+    "operational": "Operational"
+  },
+  "page-not-found": {
+    "title": "Page not found",
+    "content": "The path <strong>/{{ invalid_path }}</strong> was not found.",
+    "go-home": "Back to Home"
+  }
+}

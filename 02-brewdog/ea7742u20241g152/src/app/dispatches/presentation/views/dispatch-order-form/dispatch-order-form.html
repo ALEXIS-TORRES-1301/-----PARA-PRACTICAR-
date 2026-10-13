@@ -1,0 +1,79 @@
+<section class="container-with-spacing" aria-labelledby="dispatch-order-title">
+  <h1 id="dispatch-order-title">{{ 'dispatch-order.title' | translate }}</h1>
+  <p class="subtitle">{{ 'dispatch-order.subtitle' | translate }}</p>
+
+  <mat-card appearance="outlined" class="form-card">
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" [attr.aria-label]="'dispatch-order.form-label' | translate" novalidate>
+        <mat-form-field>
+          <mat-label>{{ 'dispatch-order.brewery-type' | translate }}</mat-label>
+          <mat-select formControlName="breweryType" required>
+            @for (breweryType of breweryTypes; track breweryType) {
+              <mat-option [value]="breweryType">{{ ('brewery-types.' + breweryType) | translate }}</mat-option>
+            }
+          </mat-select>
+          @if (dispatchHubSummary(); as summary) {
+            <mat-hint>{{ 'dispatch-order.dispatch-hub' | translate: { name: summary.dispatchHub.name } }}</mat-hint>
+          }
+          @if (form.controls.breweryType.hasError('required')) {
+            <mat-error>{{ 'dispatch-order.error.brewery-type-required' | translate }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>{{ 'dispatch-order.brewery' | translate }}</mat-label>
+          <mat-select formControlName="breweryId" required [attr.aria-busy]="loadingBreweries()">
+            @for (brewery of breweries(); track brewery.id) {
+              <mat-option [value]="brewery.id">{{ brewery.name }}</mat-option>
+            }
+          </mat-select>
+          @if (loadingBreweries()) {
+            <mat-hint>{{ 'dispatch-order.loading-breweries' | translate }}</mat-hint>
+          }
+          @if (form.controls.breweryId.hasError('required')) {
+            <mat-error>{{ 'dispatch-order.error.brewery-required' | translate }}</mat-error>
+          }
+        </mat-form-field>
+        @if (loadingBreweries()) {
+          <mat-progress-bar mode="indeterminate" [attr.aria-label]="'dispatch-order.loading-breweries' | translate"/>
+        }
+        @if (breweriesError()) {
+          <p class="error" role="alert">{{ 'dispatch-order.error.breweries-unavailable' | translate }}</p>
+        }
+
+        @let assignedTonnage = form.controls.assignedTonnage;
+        <mat-form-field>
+          <mat-label>{{ 'dispatch-order.assigned-tonnage' | translate }}</mat-label>
+          <input matInput type="number" formControlName="assignedTonnage" min="0" step="any" required
+                 [attr.max]="availableTonnageCapacity()" inputmode="decimal">
+          @if (availableTonnageCapacity() !== null) {
+            <mat-hint>{{ 'dispatch-order.tonnage-hint' | translate: { capacity: availableTonnageCapacity() } }}</mat-hint>
+          }
+          @if (assignedTonnage.hasError('required')) {
+            <mat-error>{{ 'dispatch-order.error.assigned-tonnage-required' | translate }}</mat-error>
+          } @else if (assignedTonnage.hasError('min')) {
+            <mat-error>{{ 'dispatch-order.error.assigned-tonnage-min' | translate }}</mat-error>
+          } @else if (assignedTonnage.hasError('max')) {
+            <mat-error>{{ 'dispatch-order.error.assigned-tonnage-max' | translate: { capacity: availableTonnageCapacity() } }}</mat-error>
+          }
+        </mat-form-field>
+
+        @if (availableTonnageCapacity() !== null && availableTonnageCapacity()! <= 0) {
+          <p class="error" role="alert">{{ 'dispatch-order.error.no-capacity' | translate }}</p>
+        }
+        @if (saveFailed()) {
+          <p class="error" role="alert">{{ 'dispatch-order.error.save-failed' | translate }}</p>
+        }
+
+        <div class="actions">
+          <button mat-stroked-button type="button" (click)="cancel()">
+            {{ 'dispatch-order.cancel' | translate }}
+          </button>
+          <button mat-flat-button type="submit" [disabled]="form.invalid || saving()">
+            {{ 'dispatch-order.create' | translate }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

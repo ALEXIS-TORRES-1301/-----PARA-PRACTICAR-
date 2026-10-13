@@ -1,0 +1,70 @@
+{
+  "app": {
+    "logo-alt": "Logo de BrewDog",
+    "toggle-menu": "Mostrar u ocultar menú de navegación",
+    "language": "Idioma preferido",
+    "navigation": "Navegación principal"
+  },
+  "option": {
+    "home": "Inicio",
+    "new-dispatch-order": "Nueva Orden de Despacho"
+  },
+  "brewery-types": {
+    "micro": "Micro",
+    "nano": "Nano",
+    "regional": "Regional",
+    "brewpub": "Brewpub",
+    "large": "Grande",
+    "contract": "Por contrato"
+  },
+  "home": {
+    "title": "Inicio",
+    "content": "Gestión avanzada de órdenes de despacho y tonelaje para centros logísticos.",
+    "my-dispatch-hubs": "Mis Centros de Despacho",
+    "loading": "Cargando centros de despacho...",
+    "no-dispatch-hubs": "No se encontraron centros de despacho."
+  },
+  "dispatch-hub-summary": {
+    "max-tonnage": "Tonelaje máximo: {{ tonnage }} t",
+    "orders": "Órdenes de despacho de {{ name }}",
+    "tonnage-value": "{{ tonnage }} t",
+    "dispatched-at": "Despachado {{ date }}",
+    "empty": "Vacío",
+    "total-dispatched-tonnage": "Tonelaje Total Despachado",
+    "available-tonnage-capacity": "Capacidad de Tonelaje Disponible"
+  },
+  "dispatch-order": {
+    "title": "Nueva Orden de Despacho",
+    "subtitle": "Registre una orden de despacho de carga en su centro",
+    "form-label": "Formulario de nueva orden de despacho",
+    "brewery-type": "Tipo de Cervecería",
+    "brewery": "Cervecería de Destino",
+    "assigned-tonnage": "Tonelaje Asignado (t)",
+    "dispatch-hub": "Centro de despacho: {{ name }}",
+    "tonnage-hint": "Capacidad disponible: {{ capacity }} t",
+    "loading-breweries": "Cargando cervecerías...",
+    "create": "Crear",
+    "cancel": "Cancelar",
+    "error": {
+      "brewery-type-required": "El tipo de cervecería es obligatorio",
+      "brewery-required": "La cervecería de destino es obligatoria",
+      "assigned-tonnage-required": "El tonelaje asignado es obligatorio",
+      "assigned-tonnage-min": "El tonelaje asignado debe ser mayor que 0",
+      "assigned-tonnage-max": "El tonelaje asignado no debe exceder la capacidad disponible de {{ capacity }} t",
+      "no-capacity": "Este centro de despacho no tiene capacidad de tonelaje disponible.",
+      "breweries-unavailable": "No se pudieron cargar las cervecerías. Intente más tarde.",
+      "save-failed": "No se pudo crear la orden de despacho. Intente nuevamente."
+    }
+  },
+  "footer": {
+    "about": "BrewDog Dispatch Logistics Platform · Distribución global de cerveza artesanal desde 2007.",
+    "rights": "Copyright © 2026 BrewDog. Todos los derechos reservados.",
+    "network-status": "Estado de la red de distribución:",
+    "operational": "Operativa"
+  },
+  "page-not-found": {
+    "title": "Página no encontrada",
+    "content": "La ruta <strong>/{{ invalid_path }}</strong> no fue encontrada.",
+    "go-home": "Volver al Inicio"
+  }
+}

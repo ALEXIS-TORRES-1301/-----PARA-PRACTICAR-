@@ -1,0 +1,43 @@
+@let hub = summary().dispatchHub;
+<mat-card class="summary-card" appearance="outlined"
+          role="region" [attr.aria-labelledby]="'dispatch-hub-' + hub.id + '-name'">
+  <mat-card-header>
+    <mat-icon mat-card-avatar class="avatar" aria-hidden="true">warehouse</mat-icon>
+    <mat-card-title [id]="'dispatch-hub-' + hub.id + '-name'">{{ hub.name }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ ('brewery-types.' + hub.breweryType) | translate }} ·
+      {{ 'dispatch-hub-summary.max-tonnage' | translate: { tonnage: (hub.maxTonnage | number: '1.0-2' : currentLang()) } }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="content">
+    @if (summary().isEmpty) {
+      <p class="empty" role="status">{{ 'dispatch-hub-summary.empty' | translate }}</p>
+    } @else {
+      <mat-list [attr.aria-label]="'dispatch-hub-summary.orders' | translate: { name: hub.name }">
+        @for (order of summary().orders; track order.id) {
+          <mat-list-item>
+            <span matListItemTitle>{{ order.breweryName }}</span>
+            <span matListItemLine class="dispatched-at">
+              {{ 'dispatch-hub-summary.dispatched-at' | translate: { date: (order.dispatchedAt | date: 'medium' : undefined : currentLang()) } }}
+            </span>
+            <span matListItemMeta class="tonnage">
+              {{ 'dispatch-hub-summary.tonnage-value' | translate: { tonnage: (order.assignedTonnage | number: '1.0-2' : currentLang()) } }}
+            </span>
+          </mat-list-item>
+        }
+      </mat-list>
+    }
+  </mat-card-content>
+
+  <mat-card-footer class="footer">
+    <div class="indicator">
+      <span class="indicator-value">{{ summary().totalDispatchedTonnage | number: '1.0-2' : currentLang() }} t</span>
+      <span class="indicator-label">{{ 'dispatch-hub-summary.total-dispatched-tonnage' | translate }}</span>
+    </div>
+    <div class="indicator" [class.warning]="summary().availableTonnageCapacity <= 0">
+      <span class="indicator-value">{{ summary().availableTonnageCapacity | number: '1.0-2' : currentLang() }} t</span>
+      <span class="indicator-label">{{ 'dispatch-hub-summary.available-tonnage-capacity' | translate }}</span>
+    </div>
+  </mat-card-footer>
+</mat-card>

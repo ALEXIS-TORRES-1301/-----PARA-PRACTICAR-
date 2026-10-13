@@ -1,0 +1,17 @@
+@if (store.loading()) {
+  <mat-progress-bar mode="indeterminate" [attr.aria-label]="'home.loading' | translate"/>
+}
+@if (store.error()) {
+  <mat-error role="alert">{{ store.error() }}</mat-error>
+} @else if (!store.loading() && store.dispatchHubSummaries().length === 0) {
+  <p role="status">{{ 'home.no-dispatch-hubs' | translate }}</p>
+}
+
+<mat-grid-list [cols]="columns()" rowHeight="380px" gutterSize="16px"
+               [attr.aria-label]="'home.my-dispatch-hubs' | translate">
+  @for (summary of store.dispatchHubSummaries(); track summary.dispatchHub.id) {
+    <mat-grid-tile>
+      <app-dispatch-hub-summary [summary]="summary"/>
+    </mat-grid-tile>
+  }
+</mat-grid-list>

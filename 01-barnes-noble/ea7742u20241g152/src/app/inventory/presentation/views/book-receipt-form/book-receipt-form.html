@@ -41,6 +41,7 @@
           <p class="error" role="alert">{{ 'book-receipt.error.books-unavailable' | translate }}</p>
         }
 
+        @let copies = form.controls.copies;
         <mat-form-field>
           <mat-label>{{ 'book-receipt.copies' | translate }}</mat-label>
           <input matInput type="number" formControlName="copies" min="1" step="1" required
@@ -48,7 +49,6 @@
           @if (maximumCopies(); as max) {
             <mat-hint>{{ 'book-receipt.copies-hint' | translate: { max: max } }}</mat-hint>
           }
-          @let copies = form.controls.copies;
           @if (copies.hasError('required')) {
             <mat-error>{{ 'book-receipt.error.copies-required' | translate }}</mat-error>
           } @else if (copies.hasError('pattern')) {

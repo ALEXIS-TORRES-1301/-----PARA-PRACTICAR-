@@ -1,0 +1,29 @@
+.footer-content {
+  padding: 16px;
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.footer-content p {
+  margin: 4px 0;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.status-icon {
+  color: #22c55e;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.rights {
+  color: #bdbdbd;
+}
