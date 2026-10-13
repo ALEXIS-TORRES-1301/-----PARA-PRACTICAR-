@@ -15,7 +15,7 @@ Alumno: **Alexis Calin Torres Huaman**, código **u20241g152**, NRC **7742**, pr
 4. Agregar al profesor y el README con Authorship
 5. Cómo hacer commits en WebStorm (rutina)
 6. Estructura de carpetas final
-7. Desarrollo por fases, con el commit de cada una
+7. Secuencia exacta: carpetas, archivos y commits
 8. Verificación final
 9. Entrega: zip y aula virtual
 
@@ -153,7 +153,7 @@ Prueba rápida: ejecuta `ng serve`, abre http://localhost:4200, comprueba que ca
 5. Haz clic en **Commit and Push…** (o **Commit**, y luego **`Ctrl + Shift + K`** para hacer push).
 6. Para revisar tu historial abre **`Alt + 9`** (ventana Git) → pestaña **Log**. Debe verse una escalera de commits espaciados en el tiempo.
 
-**Ritmo:** un commit cada **10 a 15 minutos**, unos 18 en total. Haz push al menos cada 2 o 3 commits.
+**Ritmo:** un commit cada **10 a 15 minutos**, unos 25 en total (la lista exacta está en la sección 7). Haz push al menos cada 2 o 3 commits.
 
 **Atajos útiles**
 
@@ -225,27 +225,68 @@ ea7742u20241g152/
 
 ---
 
-## 7. Desarrollo por fases (170 min en total)
+## 7. Secuencia exacta: carpetas, archivos y commits (170 min)
 
-Cada fase termina con su commit. La tabla de tiempos va acumulada desde el inicio del examen.
+Cada bloque es **un commit**. Haz siempre lo mismo:
+1. Crea las carpetas.
+2. Crea los archivos **en el orden indicado**. El orden importa: cada archivo usa a los anteriores.
+3. Verifica que `ng serve` no muestre errores.
+4. Presiona `Ctrl + K`, marca **solo** los archivos del bloque, escribe el mensaje y haz clic en **Commit and Push**.
 
-| Tiempo | Fase | Commit(s) |
+Todas las rutas son relativas a `src/app/`, salvo que digan otra cosa.
+**Escribe el TSDoc (`/** ... @author Alexis Calin Torres Huaman */`) mientras creas cada clase**; no lo dejes para el final.
+
+### Resumen de los 25 commits
+
+| # | Min | Mensaje |
 |---|---|---|
-| 0–20 | Secciones 2, 3 y 4 | `chore: initialize...` · `chore(server): ...` · `docs(readme): ...` |
-| 20–35 | **7.1** Configuración | `build: configure environments, material theme and i18n providers` · `feat(i18n): add english and spanish translation files` |
-| 35–50 | **7.2** Shared base | `feat(shared): add base entity, assembler, api endpoint and logo api` |
-| 50–62 | **7.3** Inventory | `feat(inventory): add book stock entity, assembler, api and store` |
-| 62–80 | **7.4** Bookstores | `feat(bookstores): add bookstore entity and inventory summary model` · `feat(bookstores): add bookstore assembler, api and store` |
-| 80–92 | **7.5** Catalog | `feat(catalog): integrate open library subjects api` |
-| 92–110 | **7.6** Layout y rutas | `feat(shared): add layout with toolbar, sidenav and language switcher` · `feat(shared): add page not found view and application routes` |
-| 110–128 | **7.7** Overview | `feat(bookstores): add bookstore summary card component` · `feat(bookstores): add bookstore overview view` |
-| 128–150 | **7.8** Receive Books | `feat(inventory): add receive books reactive form` · `feat(inventory): validate copies against bookstore minimum copies` |
-| 150–160 | **7.9** Pulido | `style(ui): improve accessibility and responsive layout` · `docs: add tsdoc comments` |
-| 160–170 | **8 y 9** README final y entrega | `docs(readme): add features, technologies and setup` |
+| 1 | 0–8 | `chore: initialize angular 22.2.2 project with material and ngx-translate` |
+| 2 | 8–11 | `chore(server): add json-server fake api data` |
+| 3 | 11–15 | `docs(readme): add overview and authorship sections` |
+| 4 | 15–20 | `build: configure environment variables for platform and external apis` |
+| 5 | 20–25 | `style(theme): add material theme based on barnes and noble design` |
+| 6 | 25–32 | `feat(i18n): add english and spanish translations with ngx-translate` |
+| 7 | 32–36 | `feat(shared): add base entity and specialty domain model` |
+| 8 | 36–45 | `feat(shared): add base infrastructure for api endpoints and assemblers` |
+| 9 | 45–50 | `feat(inventory): add book stock entity and resources` |
+| 10 | 50–56 | `feat(inventory): add book stock assembler and inventory api` |
+| 11 | 56–61 | `feat(inventory): add inventory store with signals` |
+| 12 | 61–71 | `feat(bookstores): add bookstore entity and inventory summary model` |
+| 13 | 71–79 | `feat(bookstores): add bookstore assembler, api and store` |
+| 14 | 79–85 | `feat(catalog): add book entity, resources and assembler` |
+| 15 | 85–92 | `feat(catalog): add books api endpoint, catalog api and store` |
+| 16 | 92–96 | `feat(shared): add language switcher component` |
+| 17 | 96–104 | `feat(shared): add layout with toolbar and sidenav` |
+| 18 | 104–109 | `feat(shared): add page not found view and root routes` |
+| 19 | 109–117 | `feat(bookstores): add bookstore summary card component` |
+| 20 | 117–124 | `feat(bookstores): add bookstore overview view and routes` |
+| 21 | 124–136 | `feat(inventory): add receive books reactive form and routes` |
+| 22 | 136–143 | `feat(inventory): validate copies against bookstore minimum copies` |
+| 23 | 143–152 | `style(ui): improve accessibility and responsive layout` |
+| 24 | 152–158 | `docs: complete tsdoc comments` |
+| 25 | 158–165 | `docs(readme): add features, technologies and setup` |
 
-### 7.1 Configuración
-- `src/environments/environment.ts` y `environment.development.ts`. Créalos con `ng g environments` o a mano. Deben contener:
-  ```ts
+Los últimos 5 minutos son para empaquetar y entregar (sección 9).
+
+---
+
+### Commits 1, 2 y 3: proyecto, servidor y README
+Ya los hiciste en las secciones 3 y 4.
+
+---
+
+### Commit 4: environments
+
+**Carpeta:** `src/environments/`. Créala con `ng g environments`, que además registra los `fileReplacements` en `angular.json`.
+
+**Archivos:**
+1. `src/environments/environment.ts`, con `production: true`
+2. `src/environments/environment.development.ts`, con `production: false`
+
+Ambos con el mismo contenido:
+```ts
+export const environment = {
+  production: true,
   platformProviderApiBaseUrl: 'http://localhost:3000',
   platformProviderBookstoresEndpointPath: '/bookstores',
   platformProviderBookStocksEndpointPath: '/book-stocks',
@@ -253,86 +294,387 @@ Cada fase termina con su commit. La tabla de tiempos va acumulada desde el inici
   catalogProviderSubjectsEndpointPath: '/subjects',
   catalogProviderSubjectsLimit: 50,
   logoProviderApiBaseUrl: 'https://img.logo.dev/',
-  logoProviderPublishableKey: '<tu key de logo.dev>',   // regístrate gratis en logo.dev
+  logoProviderPublishableKey: 'TU_KEY_DE_LOGO_DEV',
   institutionDomain: 'barnesandnoble.com'
-  ```
-- `src/material-theme.scss`: `@include mat.theme((color: (primary: mat.$green-palette)...))`. Agrégalo a `styles` en `angular.json`.
-- `app.config.ts`:
-  - `provideHttpClient()`
-  - `provideTranslateService({loader: provideTranslateHttpLoader({prefix: './i18n/', suffix: '.json'}), fallbackLang: 'en'})`
-  - `registerLocaleData(localeEs)`
-- `app.ts`: `translate.addLangs(['en','es'])` y `translate.use('en')`
-- `public/i18n/en.json` y `es.json`, con claves en kebab-case.
+};
+```
 
-### 7.2 Shared base
-Copia de memoria el patrón del learning-center:
-- `BaseEntity`, `BaseResource`, `BaseResponse`, `BaseAssembler`, `BaseApi`
-- `BaseApiEndpoint`, con `getAll`, `create` (quitando el `id` antes del POST) y `handleError`
-- `ErrorHandlingEnabledBaseType`, con `handleError` (como en learning-center; lo usa el endpoint del catálogo)
-- `Specialty`: `'fantasy' | 'science_fiction' | 'history' | 'mystery' | 'romance' | 'science'`
-- El logo **no** lleva servicio: el `Layout` arma la URL con `environment` (`logoProviderApiBaseUrl` + dominio + `?token=` + key)
+**Marca en el commit:** los 2 environments y `angular.json`.
+`build: configure environment variables for platform and external apis`
 
-### 7.3 Inventory
-1. `BookStock`, con `receivedAt: Date`
-2. `BookStockResource`, con `receivedAt: string`
-3. `BookStockAssembler`
-4. `BookStocksApiEndpoint`
-5. `InventoryApi`
-6. `InventoryStore`, con los signals `bookStocks`, `loading` y `error`, y `addBookStock(stock, onCreated, onFailed)`
+---
 
-### 7.4 Bookstores
-- `Bookstore`, con `maximumReceivableCopies` (= minimumCopies × 2), `canReceive(copies)` y `requiresReplenishment(total)`.
-- `BookstoreSummary`:
-  - agrupa los stocks **por `bookKey`** sumando copies
-  - `availableTitles` = cantidad de libros distintos
-  - `replenishmentRequired` = cantidad de libros con total menor que `minimumCopies`
-  - `isEmpty`
-- `BookstoresStore`: `summaries = computed(...)` usando `InventoryStore.bookStocks()`, y `getBookstoreBySpecialty()`.
+### Commit 5: tema de Material
 
-### 7.5 Catalog
-Mismo patrón que `SignInApiEndpoint` + `IamApi` del learning-center: el endpoint no extiende `BaseApiEndpoint` porque los libros de Open Library no tienen `id` numérico.
-- `Book`, con `'Unknown Author'` cuando no viene autor.
-- `books-response.ts`: `BookResource` (`key`, `title`, `authors?`) y `BooksResponse` (`works`).
-- `BookAssembler` (clase normal, sin `@Injectable`), que usa `authors?.[0]?.name`.
-- `BooksApiEndpoint extends ErrorHandlingEnabledBaseType`, con `constructor(private http, private assembler)` y `getBySpecialty()`, que hace `GET ${base}/subjects/${specialty}.json?limit=50` + `catchError(this.handleError(...))`.
-- `CatalogApi extends BaseApi`: `private readonly booksEndpoint = new BooksApiEndpoint(this.http, new BookAssembler())`.
-- `CatalogStore.loadBooksBySpecialty()`.
+**Archivos:**
+1. `src/material-theme.scss`: `@use '@angular/material' as mat;`, `mat.theme(...)` con `mat.$green-palette` y `mat.toolbar-overrides` con el verde `#2a5934`.
+2. En `angular.json` → `styles`, agrega `"src/material-theme.scss"` **antes** de `"src/styles.css"`.
+3. `src/styles.css`: estilos de `html` y `body`, más la clase `.container-with-spacing { margin: 16px; }` del learning-center.
+4. `src/index.html`: cambia el `<title>` y agrega las fuentes Roboto y Material Icons.
 
-### 7.6 Layout y rutas
-- **Toolbar:** botón de menú con `aria-label`, logo con `alt`, el texto "Barnes & Noble Inventory Platform", un spacer y EN/ES.
-- **`mat-sidenav`:** dos enlaces, "Bookstore Overview" y "Receive Books".
-- **Rutas:** `bookstores` → `overview`, `inventory` → `receipts/new`, `''` redirige a `/bookstores/overview` y `**` va a PageNotFound.
-- **PageNotFound:** muestra la ruta inválida y un botón para volver al Overview.
+**Marca:** `material-theme.scss`, `styles.css`, `index.html` y `angular.json`.
+`style(theme): add material theme based on barnes and noble design`
 
-### 7.7 Overview
-- **`bookstore-summary`:**
-  - header con el `name`
-  - content con la lista de título y total de copies, o "Empty"
-  - footer con los 2 indicadores
-  - usa `| date`
-- **`bookstore-overview`:** el título, el texto, "Store Inventory" y un `mat-grid-list cols="2"`.
+---
 
-### 7.8 Receive Books
-- `h1` "Receive Books" y subtítulo "Register Books to Your Bookstore".
-- Form reactivo con `specialty`, `bookKey` y `copies`.
-- Al cambiar `specialty`:
-  - carga los libros de esa especialidad
-  - resetea el libro
-  - actualiza `Validators.max(minimumCopies * 2)`
-- **Receive:** crea el `BookStock` con `receivedAt: new Date()`; navega **solo cuando el POST responde OK**.
-- **Cancel:** navega al Overview.
+### Commit 6: i18n
 
-### 7.9 Pulido
-- **ARIA:** `aria-label` y `role="alert"`.
-- **Responsive:** `BreakpointObserver`, con 1 columna en móvil.
-- **TSDoc** en cada clase:
-  ```ts
-  /**
-   * Represents a Barnes & Noble bookstore.
-   *
-   * @author Alexis Calin Torres Huaman
-   */
-  ```
+**Carpeta:** `public/i18n/`
+
+**Archivos:**
+1. `public/i18n/en.json`, con todas las claves en kebab-case:
+   - `app`: `logo-alt`, `toggle-menu`, `language`, `navigation`
+   - `option`: `bookstore-overview`, `receive-books`
+   - `specialties`: `fantasy`, `science-fiction`, `history`, `mystery`, `romance`, `science`
+   - `bookstore-overview`: `title`, `content`, `store-inventory`
+   - `bookstore-summary`: `empty`, `available-titles`, `replenishment-required`, `last-received`
+   - `book-receipt`: `title`, `subtitle`, `specialty`, `book`, `copies`, `receive`, `cancel`, y `error.*`
+   - `page-not-found`: `title`, `content`, `go-back`
+2. `public/i18n/es.json`: las mismas claves, traducidas al español.
+3. `app.config.ts`: agrega `provideHttpClient()`, `provideTranslateService({ loader: provideTranslateHttpLoader({prefix: './i18n/', suffix: '.json'}), fallbackLang: 'en' })` y `registerLocaleData(localeEs)`.
+4. `app.ts`: inyecta `TranslateService`, y en el constructor ejecuta `addLangs(['en','es'])` y `use('en')`.
+
+**Marca:** los 2 json, `app.config.ts` y `app.ts`.
+`feat(i18n): add english and spanish translations with ngx-translate`
+
+---
+
+### Commit 7: shared, dominio
+
+**Carpeta:** `shared/domain/model/`
+
+**Archivos:**
+1. `base-entity.ts`: `export interface BaseEntity { id: number; }`
+2. `specialty.ts`:
+   - `export type Specialty = 'fantasy' | 'science_fiction' | 'history' | 'mystery' | 'romance' | 'science';`
+   - `SPECIALTIES` con los 6 valores
+   - `specialtyTranslationKey(s)`, que devuelve `` `specialties.${s.replaceAll('_','-')}` ``
+
+**Marca:** los 2 archivos.
+`feat(shared): add base entity and specialty domain model`
+
+---
+
+### Commit 8: shared, infraestructura
+
+**Carpeta:** `shared/infrastructure/`
+
+**Archivos, en este orden:**
+1. `base-response.ts`: `BaseResponse` (vacía) y `BaseResource { id: number }`
+2. `base-assembler.ts`: `interface BaseAssembler<TEntity, TResource, TResponse>` con `toEntityFromResource`, `toResourceFromEntity` y `toEntitiesFromResponse`
+3. `error-handling-enabled-base-type.ts`: clase abstracta con `handleError(operation)`, que distingue 404, `ErrorEvent` y otros errores
+4. `base-api-endpoint.ts`: clase abstracta con `constructor(http, endpointUrl, assembler)`, `getAll`, `getById`, `create`, `update`, `delete` y `handleError`. En `create` quita el id: `const {id, ...resource} = ...`
+5. `base-api.ts`: `export abstract class BaseApi {}`
+
+**Marca:** los 5 archivos.
+`feat(shared): add base infrastructure for api endpoints and assemblers`
+
+---
+
+### Commit 9: inventory, entidad y resources
+
+**Carpetas:** `inventory/domain/model/` e `inventory/infrastructure/`
+
+**Archivos:**
+1. `inventory/domain/model/book-stock.entity.ts`:
+   - campos privados `#id`, `#bookstoreId`, `#bookKey`, `#bookTitle`, `#authorName`, `#copies` y `#receivedAt: Date`
+   - constructor con un objeto
+   - get y set para cada campo
+2. `inventory/infrastructure/book-stocks-response.ts`: `BookStockResource extends BaseResource` (con `receivedAt: string`) y `BookStocksResponse { bookStocks: BookStockResource[] }`
+
+**Marca:** los 2 archivos.
+`feat(inventory): add book stock entity and resources`
+
+---
+
+### Commit 10: inventory, assembler y API
+
+**Archivos (en `inventory/infrastructure/`):**
+1. `book-stock-assembler.ts`: `implements BaseAssembler<...>`; usa `new Date(resource.receivedAt)` y `entity.receivedAt.toISOString()`
+2. `book-stocks-api-endpoint.ts`: `extends BaseApiEndpoint<...>`, con `super(http, url del environment, new BookStockAssembler())`
+3. `inventory-api.ts`: `@Injectable({providedIn:'root'})`, `extends BaseApi`, con `getBookStocks()` y `createBookStock()`
+
+**Marca:** los 3 archivos.
+`feat(inventory): add book stock assembler and inventory api`
+
+---
+
+### Commit 11: inventory, store
+
+**Carpeta:** `inventory/application/`
+
+**Archivo:** `inventory.store.ts`
+- `bookStocksSignal`, `loadingSignal` y `errorSignal`, cada uno con su versión `asReadonly()`
+- `loadBookStocks()` en el constructor, con `takeUntilDestroyed()`
+- `addBookStock(bookStock, onCreated, onFailed)`, que actualiza el signal y llama a `onCreated` en el `next`
+- `formatError()`
+
+**Marca:** `inventory.store.ts`.
+`feat(inventory): add inventory store with signals`
+
+---
+
+### Commit 12: bookstores, dominio (la lógica más importante)
+
+**Carpeta:** `bookstores/domain/model/`
+
+**Archivos:**
+1. `bookstore.entity.ts`:
+   - `#id`, `#name`, `#specialty` y `#minimumCopies`, con get y set
+   - `get maximumReceivableCopies()`, que devuelve `minimumCopies * 2`
+   - `canReceive(copies)`: entero, mayor que 0 y menor o igual al máximo
+   - `requiresReplenishment(totalCopies)`, que devuelve `totalCopies < minimumCopies`
+2. `book-inventory-item.ts`: una clase con `bookKey`, `bookTitle`, `totalCopies` y `lastReceivedAt`
+3. `bookstore-summary.ts`: `constructor(bookstore, bookStocks)`
+   - filtra los stocks donde `bookstoreId === bookstore.id`
+   - los agrupa con un `Map` por `bookKey`, sumando copies, y guarda el resultado en `items`
+   - `isEmpty`, que devuelve `items.length === 0`
+   - `availableTitles`, que devuelve `items.length`
+   - `replenishmentRequired`, que cuenta los items donde `bookstore.requiresReplenishment(item.totalCopies)`
+
+**Marca:** los 3 archivos.
+`feat(bookstores): add bookstore entity and inventory summary model`
+
+---
+
+### Commit 13: bookstores, infraestructura y store
+
+**Carpetas:** `bookstores/infrastructure/` y `bookstores/application/`
+
+**Archivos:**
+1. `infrastructure/bookstores-response.ts`: `BookstoreResource` y `BookstoresResponse`
+2. `infrastructure/bookstore-assembler.ts`
+3. `infrastructure/bookstores-api-endpoint.ts`
+4. `infrastructure/bookstores-api.ts`, con `getBookstores()`
+5. `application/bookstores.store.ts`:
+   - `bookstores`, `loading` y `error`
+   - `summaries = computed(() => bookstores().map(b => new BookstoreSummary(b, inventoryStore.bookStocks())))`
+   - `getBookstoreBySpecialty(specialty)`
+
+**Marca:** los 5 archivos.
+`feat(bookstores): add bookstore assembler, api and store`
+
+---
+
+### Commit 14: catalog, entidad, resources y assembler
+
+**Carpetas:** `catalog/domain/model/` y `catalog/infrastructure/`
+
+**Archivos:**
+1. `domain/model/book.entity.ts`: `#key`, `#title` y `#authorName`, con get y set. Si no viene autor, `authorName` vale `'Unknown Author'`.
+2. `infrastructure/books-response.ts`: `AuthorResource { name }`, `BookResource { key, title, authors? }` y `BooksResponse { works }`
+3. `infrastructure/book-assembler.ts`: clase normal, con `toEntitiesFromResponse` y `toEntityFromResource`, que usa `authors?.[0]?.name`
+
+**Marca:** los 3 archivos.
+`feat(catalog): add book entity, resources and assembler`
+
+---
+
+### Commit 15: catalog, endpoint, API y store
+
+**Carpeta:** `catalog/application/`
+
+**Archivos:**
+1. `infrastructure/books-api-endpoint.ts`: `extends ErrorHandlingEnabledBaseType`; `getBySpecialty(specialty)` hace `GET {base}/subjects/{specialty}.json` con `params: {limit: 50}` y `catchError(this.handleError(...))`
+2. `infrastructure/catalog-api.ts`: `extends BaseApi`, con `booksEndpoint = new BooksApiEndpoint(this.http, new BookAssembler())`
+3. `application/catalog.store.ts`: `books`, `loading`, `error`, `loadBooksBySpecialty(specialty)` y `getBookByKey(key)`
+
+**Marca:** los 3 archivos.
+`feat(catalog): add books api endpoint, catalog api and store`
+
+---
+
+### Commit 16: language switcher
+
+**Terminal:**
+```bash
+ng g c shared/presentation/components/language-switcher --skip-tests
+```
+
+**Archivos generados:** `.ts`, `.html` y `.css`.
+- **`.ts`:** `currentLang`, `languages`, la inyección de `TranslateService` y `useLanguage(lang)`.
+- **`.html`:** un `mat-button-toggle-group` con `@for` sobre los idiomas, mostrando `EN` y `ES`.
+
+**Marca:** los 3 archivos.
+`feat(shared): add language switcher component`
+
+---
+
+### Commit 17: layout (toolbar + sidenav)
+
+**Terminal:**
+```bash
+ng g c shared/presentation/components/layout --skip-tests
+```
+
+**Archivos:**
+1. **`layout.ts`:**
+   - `logoUrl`, armado con el `environment`
+   - `options = signal([{link:'/bookstores/overview', label:'option.bookstore-overview'}, {link:'/inventory/receipts/new', label:'option.receive-books'}])`
+2. **`layout.html`:**
+   - `mat-toolbar` con: botón de menú, `<img [src]="logoUrl">`, el texto "Barnes & Noble Inventory Platform", un spacer y `<app-language-switcher/>`
+   - `mat-sidenav-container` → `mat-sidenav` con un `mat-nav-list` y un `@for` sobre `options()`
+   - `mat-sidenav-content` → `<router-outlet/>`
+3. **`layout.css`**
+4. **`app.html`:** reemplaza todo por `<app-layout/>`
+5. **`app.ts`:** agrega `Layout` a `imports`
+
+**Marca:** los 3 de layout, más `app.html` y `app.ts`.
+`feat(shared): add layout with toolbar and sidenav`
+
+---
+
+### Commit 18: page not found y rutas raíz
+
+**Terminal:**
+```bash
+ng g c shared/presentation/views/page-not-found --skip-tests
+```
+
+**Archivos:**
+1. **`page-not-found.ts`:** `invalidPath`, calculado en `ngOnInit` desde `route.snapshot.url`, y `navigateToBookstoreOverview()`
+2. **`page-not-found.html`:** el título, el texto con la ruta y el botón para volver
+3. **`app.routes.ts`:** por ahora solo estas rutas (las de los contextos se agregan en los commits 20 y 21):
+   ```ts
+   const pageNotFound = () => import('./shared/presentation/views/page-not-found/page-not-found').then(m => m.PageNotFound);
+   export const routes: Routes = [
+     { path: '', redirectTo: '/bookstores/overview', pathMatch: 'full' },
+     { path: '**', loadComponent: pageNotFound }
+   ];
+   ```
+
+**Marca:** los 3 de page-not-found y `app.routes.ts`.
+`feat(shared): add page not found view and root routes`
+
+---
+
+### Commit 19: tarjeta Bookstore Summary
+
+**Terminal:**
+```bash
+ng g c bookstores/presentation/components/bookstore-summary --skip-tests
+```
+
+**Archivos:**
+1. **`.ts`:** `summary = input.required<BookstoreSummary>()`. Importa el modelo con un alias, porque el componente se llama igual: `import {BookstoreSummary as BookstoreSummaryModel} ...`
+2. **`.html`:** un `mat-card` con:
+   - `mat-card-header` con el `name`
+   - `mat-card-content` con `@if (summary().isEmpty)` "Empty"; si no, un `@for` con el título y `totalCopies`, y `| date`
+   - `mat-card-footer` con los 2 indicadores
+3. **`.css`**
+
+**Marca:** los 3 archivos.
+`feat(bookstores): add bookstore summary card component`
+
+---
+
+### Commit 20: vista Bookstore Overview y sus rutas
+
+**Terminal:**
+```bash
+ng g c bookstores/presentation/views/bookstore-overview --skip-tests
+```
+
+**Archivos:**
+1. **`bookstore-overview.ts`:** inyecta `BookstoresStore` y expone `summaries`
+2. **`bookstore-overview.html`:**
+   - `h1` "Bookstore Overview", un `p` con el texto y un `h2` "Store Inventory"
+   - `mat-grid-list [cols]="2" rowHeight="400px"`, con un `@for` que pone `<mat-grid-tile><app-bookstore-summary [summary]="summary"/></mat-grid-tile>`
+3. **`bookstore-overview.css`**
+4. **`bookstores/presentation/bookstores.routes.ts`:**
+   ```ts
+   export const bookstoresRoutes: Routes = [
+     { path: 'overview', loadComponent: bookstoreOverview },
+     { path: '', redirectTo: 'overview', pathMatch: 'full' }
+   ];
+   ```
+5. **`app.routes.ts`:** agrega `{ path: 'bookstores', loadChildren: bookstoresRoutes }`
+
+**Prueba:** `/` debe mostrar las tarjetas con datos.
+
+**Marca:** los 3 de la vista, `bookstores.routes.ts` y `app.routes.ts`.
+`feat(bookstores): add bookstore overview view and routes`
+
+---
+
+### Commit 21: formulario Receive Books y sus rutas
+
+**Terminal:**
+```bash
+ng g c inventory/presentation/views/book-receipt-form --skip-tests
+```
+
+**Archivos:**
+1. **`book-receipt-form.ts`:**
+   - `form = this.fb.group({ specialty: new FormControl(...), bookKey: new FormControl(...), copies: new FormControl(...) })`
+   - por ahora, solo validadores `required`
+   - `valueChanges` de `specialty` → `catalogStore.loadBooksBySpecialty()`
+   - `submit()` crea el `BookStock` con `receivedAt: new Date()` y llama a `addBookStock(..., () => navegar)`
+   - `cancel()`
+2. **`book-receipt-form.html`:**
+   - `h1` y subtítulo
+   - 2 `mat-select` y 1 input number
+   - botones Cancel y Receive
+3. **`book-receipt-form.css`**
+4. **`inventory/presentation/inventory.routes.ts`:** `{ path: 'receipts/new', loadComponent: bookReceiptForm }`
+5. **`app.routes.ts`:** agrega `{ path: 'inventory', loadChildren: inventoryRoutes }`
+
+**Prueba:** registra un libro y comprueba que la tarjeta cambie al volver.
+
+**Marca:** los 3 de la vista, `inventory.routes.ts` y `app.routes.ts`.
+`feat(inventory): add receive books reactive form and routes`
+
+---
+
+### Commit 22: validación de copies
+
+**Archivos:** `book-receipt-form.ts` y `.html`
+- **validadores:** `Validators.min(1)` y `Validators.pattern(/^\d+$/)`
+- **al cambiar specialty:** `copies.setValidators([... , Validators.max(bookstore.maximumReceivableCopies)])` y luego `updateValueAndValidity()`
+- **en `submit()`:** verifica también `bookstore.canReceive(copies)`
+- **en el HTML:** un `mat-error` traducido para cada error (required, pattern, min, max) y un `mat-hint` que diga "Between 1 and X copies"
+
+**Marca:** los 2 archivos.
+`feat(inventory): validate copies against bookstore minimum copies`
+
+---
+
+### Commit 23: accesibilidad y responsive
+
+**Archivos:** los `.html` y `.css` que toques
+- **ARIA:** `aria-label` en los botones de icono, el `nav`, el grid y el form; `role="alert"` en los errores; `aria-current` en el enlace activo
+- **Responsive:** `BreakpointObserver` en el Overview, con `columns = computed(() => isHandset() ? 1 : 2)`
+- **Prueba:** que se vea bien en móvil (en Chrome: F12 → ícono de celular)
+
+**Marca:** solo los archivos modificados.
+`style(ui): improve accessibility and responsive layout`
+
+---
+
+### Commit 24: TSDoc
+
+Revisa que **cada** clase, interfaz y método público tenga su comentario:
+```ts
+/**
+ * Represents a Barnes & Noble bookstore.
+ *
+ * @author Alexis Calin Torres Huaman
+ */
+```
+
+**Marca:** los archivos que completaste.
+`docs: complete tsdoc comments`
+
+---
+
+### Commit 25: README final
+
+Completa las secciones Features, Routes, Architecture Overview, Project Structure, Technologies, Installation, Starting the Fake API y Running the Application.
+
+**Marca:** `README.md`.
+`docs(readme): add features, technologies and setup`
+
+Luego pasa a las secciones 8 y 9.
 
 ---
 
@@ -345,7 +687,7 @@ Mismo patrón que `SignInApiEndpoint` + `IamApi` del learning-center: el endpoin
 - [ ] Al registrar un stock, vuelves al Overview y los números se actualizan.
 - [ ] Copies rechaza 0, decimales y valores mayores que el doble de minimumCopies.
 - [ ] El README tiene título, Overview, **Authorship con la URL**, Features, Technologies y Setup.
-- [ ] En GitHub (pestaña *Commits*) se ven ~18 commits **con horas dentro del examen**, todos a tu nombre.
+- [ ] En GitHub (pestaña *Commits*) se ven ~25 commits **con horas dentro del examen**, todos a tu nombre.
 - [ ] Último commit y **push** hechos.
 
 ---
