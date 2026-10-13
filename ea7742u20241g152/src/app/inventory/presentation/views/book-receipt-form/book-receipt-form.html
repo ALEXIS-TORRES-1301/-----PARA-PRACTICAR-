@@ -4,7 +4,7 @@
 
   <mat-card appearance="outlined" class="form-card">
     <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="receive()" [attr.aria-label]="'book-receipt.form-label' | translate" novalidate>
+      <form [formGroup]="form" (ngSubmit)="submit()" [attr.aria-label]="'book-receipt.form-label' | translate" novalidate>
         <mat-form-field>
           <mat-label>{{ 'book-receipt.specialty' | translate }}</mat-label>
           <mat-select formControlName="specialty" required>

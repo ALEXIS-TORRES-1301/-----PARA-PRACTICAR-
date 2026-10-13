@@ -13,6 +13,6 @@ export const environment = {
   catalogProviderSubjectsEndpointPath: '/subjects',
   catalogProviderSubjectsLimit: 50,
   logoProviderApiBaseUrl: 'https://img.logo.dev/',
-  logoProviderPublishableKey: 'pk_H1j_uA9GRFizL2ikMw4qwQ',
+  logoProviderPublishableKey: 'YOUR_LOGO_DEV_PUBLISHABLE_KEY',
   institutionDomain: 'barnesandnoble.com'
 };

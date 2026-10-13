@@ -4,11 +4,8 @@
   height: 100%;
 }
 
-.toolbar {
+.toolbar mat-toolbar-row {
   gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 2;
 }
 
 .toolbar .mat-mdc-icon-button {
@@ -21,14 +18,16 @@
 }
 
 .title {
-  font-family: "Libre Baskerville", Georgia, serif;
+  margin: 0;
+  color: #ffffff;
   font-size: 1.1rem;
+  font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.spacer {
+.mat-spacer {
   flex: 1 1 auto;
 }
 
@@ -37,10 +36,16 @@
 }
 
 .sidenav {
-  width: 240px;
+  width: 220px;
   border-right: 1px solid #e0dccf;
 }
 
-.active-link {
-  font-weight: 500;
+@media (max-width: 599px) {
+  .sidenav {
+    width: 64px;
+  }
+
+  .sidenav [matListItemTitle], .title {
+    display: none;
+  }
 }

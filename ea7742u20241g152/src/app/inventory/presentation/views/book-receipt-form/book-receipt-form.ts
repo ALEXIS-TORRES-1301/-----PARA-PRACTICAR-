@@ -1,6 +1,6 @@
 import {Component, computed, inject, signal} from '@angular/core';
 import {takeUntilDestroyed, toSignal} from '@angular/core/rxjs-interop';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -37,11 +37,11 @@ export class BookReceiptForm {
   private readonly inventoryStore = inject(InventoryStore);
 
   /** Reactive form for the book receipt. */
-  protected readonly form = this.fb.group({
-    specialty: this.fb.control<Specialty | null>(null, Validators.required),
-    bookKey: this.fb.control<string | null>({value: null, disabled: true}, Validators.required),
-    copies: this.fb.control<number | null>(null,
-      [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)])
+  form = this.fb.group({
+    specialty: new FormControl<Specialty | null>(null, {validators: [Validators.required]}),
+    bookKey: new FormControl<string | null>({value: null, disabled: true}, {validators: [Validators.required]}),
+    copies: new FormControl<number | null>(null,
+      {validators: [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]})
   });
 
   /** Selectable specialties. */
@@ -85,9 +85,9 @@ export class BookReceiptForm {
   }
 
   /**
-   * Registers the book stock and navigates to the overview once persisted.
+   * Submits the form to register the book stock and navigates to the overview once persisted.
    */
-  protected receive = (): void => {
+  submit() {
     const bookstore = this.bookstore();
     const book = this.catalogStore.getBookByKey(this.form.controls.bookKey.value ?? '');
     const copies = Number(this.form.controls.copies.value);
@@ -112,7 +112,7 @@ export class BookReceiptForm {
         this.saving.set(false);
         this.saveFailed.set(true);
       });
-  };
+  }
 
   /** Discards the form and returns to the overview. */
   protected cancel = (): void => this.navigateToOverview();

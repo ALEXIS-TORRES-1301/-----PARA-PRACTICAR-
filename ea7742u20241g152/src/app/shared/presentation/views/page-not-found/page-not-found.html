@@ -1,8 +1,7 @@
-<section class="container-with-spacing" aria-labelledby="page-not-found-title">
-  <h1 id="page-not-found-title">{{ 'page-not-found.title' | translate }}</h1>
-  <p role="alert" [innerHTML]="'page-not-found.content' | translate: { invalid_path: invalidPath }"></p>
-  <button mat-flat-button type="button" (click)="navigateToBookstoreOverview()">
-    <mat-icon aria-hidden="true">arrow_back</mat-icon>
-    {{ 'page-not-found.go-back' | translate }}
-  </button>
-</section>
+<div class="container-with-spacing" role="alert">
+  <h1>{{ 'page-not-found.title' | translate }}</h1>
+  <div [innerHTML]="'page-not-found.content' | translate: { invalid_path: invalidPath }"></div>
+</div>
+<button mat-flat-button class="container-with-spacing" (click)="navigateToBookstoreOverview()">
+  {{ 'page-not-found.go-back' | translate }}
+</button>

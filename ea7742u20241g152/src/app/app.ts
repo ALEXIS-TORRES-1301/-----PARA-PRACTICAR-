@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {Layout} from './shared/presentation/components/layout/layout';
 
@@ -14,10 +14,18 @@ import {Layout} from './shared/presentation/components/layout/layout';
   styleUrl: './app.css'
 })
 export class App {
-  private readonly translate = inject(TranslateService);
+  /**
+   * Signal for the application title.
+   */
+  protected readonly title = signal('ea7742u20241g152');
 
   /**
-   * Creates the root component and sets English as the default language.
+   * Translation service instance.
+   */
+  private translate = inject(TranslateService);
+
+  /**
+   * Creates an instance of App and sets up translation with English as default.
    */
   constructor() {
     this.translate.addLangs(['en', 'es']);

@@ -3,6 +3,7 @@
 Parcial **Barnes & Noble**, Desarrollo de Aplicaciones Open Source.
 Alumno: **Alexis Calin Torres Huaman**, código **u20241g152**, NRC **7742**, proyecto **`ea7742u20241g152`**.
 
+> Arquitectura basada **solo en el proyecto learning-center** del profesor.
 > Úsala para practicar. La solución de referencia está en `ea7742u20241g152/` de este repo: compárala **al final**, no mientras programas.
 > En el examen solo se permite el completado del IDE. Nada de IA agéntica.
 
@@ -182,7 +183,7 @@ ea7742u20241g152/
 │       ├── app.ts / app.html / app.config.ts / app.routes.ts
 │       ├── shared/
 │       │   ├── domain/model/base-entity.ts, specialty.ts
-│       │   ├── infrastructure/base-response.ts, base-assembler.ts, base-api-endpoint.ts, base-api.ts, logo-dev-api.ts
+│       │   ├── infrastructure/base-response.ts, base-assembler.ts, base-api-endpoint.ts, base-api.ts, error-handling-enabled-base-type.ts
 │       │   └── presentation/
 │       │       ├── components/layout/, language-switcher/
 │       │       └── views/page-not-found/
@@ -198,7 +199,7 @@ ea7742u20241g152/
 │       │   └── presentation/bookstores.routes.ts, views/bookstore-overview/, components/bookstore-summary/
 │       └── catalog/
 │           ├── domain/model/book.entity.ts
-│           ├── infrastructure/subject-response.ts, book-assembler.ts, catalog-api.ts
+│           ├── infrastructure/books-response.ts, book-assembler.ts, books-api-endpoint.ts, catalog-api.ts
 │           └── application/catalog.store.ts
 └── README.md
 ```
@@ -252,7 +253,7 @@ Cada fase termina con su commit. La tabla de tiempos va acumulada desde el inici
   catalogProviderSubjectsEndpointPath: '/subjects',
   catalogProviderSubjectsLimit: 50,
   logoProviderApiBaseUrl: 'https://img.logo.dev/',
-  logoProviderPublishableKey: '<tu key de logo.dev>',
+  logoProviderPublishableKey: '<tu key de logo.dev>',   // regístrate gratis en logo.dev
   institutionDomain: 'barnesandnoble.com'
   ```
 - `src/material-theme.scss`: `@include mat.theme((color: (primary: mat.$green-palette)...))`. Agrégalo a `styles` en `angular.json`.
@@ -267,8 +268,9 @@ Cada fase termina con su commit. La tabla de tiempos va acumulada desde el inici
 Copia de memoria el patrón del learning-center:
 - `BaseEntity`, `BaseResource`, `BaseResponse`, `BaseAssembler`, `BaseApi`
 - `BaseApiEndpoint`, con `getAll`, `create` (quitando el `id` antes del POST) y `handleError`
+- `ErrorHandlingEnabledBaseType`, con `handleError` (como en learning-center; lo usa el endpoint del catálogo)
 - `Specialty`: `'fantasy' | 'science_fiction' | 'history' | 'mystery' | 'romance' | 'science'`
-- `LogoDevApi.getUrlToLogo(domain)`
+- El logo **no** lleva servicio: el `Layout` arma la URL con `environment` (`logoProviderApiBaseUrl` + dominio + `?token=` + key)
 
 ### 7.3 Inventory
 1. `BookStock`, con `receivedAt: Date`
@@ -288,9 +290,12 @@ Copia de memoria el patrón del learning-center:
 - `BookstoresStore`: `summaries = computed(...)` usando `InventoryStore.bookStocks()`, y `getBookstoreBySpecialty()`.
 
 ### 7.5 Catalog
+Mismo patrón que `SignInApiEndpoint` + `IamApi` del learning-center: el endpoint no extiende `BaseApiEndpoint` porque los libros de Open Library no tienen `id` numérico.
 - `Book`, con `'Unknown Author'` cuando no viene autor.
-- `SubjectResponse`, `WorkResource` y `BookAssembler` (que usa `authors?.[0]?.name`).
-- `CatalogApi`: `GET ${base}/subjects/${specialty}.json?limit=50`.
+- `books-response.ts`: `BookResource` (`key`, `title`, `authors?`) y `BooksResponse` (`works`).
+- `BookAssembler` (clase normal, sin `@Injectable`), que usa `authors?.[0]?.name`.
+- `BooksApiEndpoint extends ErrorHandlingEnabledBaseType`, con `constructor(private http, private assembler)` y `getBySpecialty()`, que hace `GET ${base}/subjects/${specialty}.json?limit=50` + `catchError(this.handleError(...))`.
+- `CatalogApi extends BaseApi`: `private readonly booksEndpoint = new BooksApiEndpoint(this.http, new BookAssembler())`.
 - `CatalogStore.loadBooksBySpecialty()`.
 
 ### 7.6 Layout y rutas

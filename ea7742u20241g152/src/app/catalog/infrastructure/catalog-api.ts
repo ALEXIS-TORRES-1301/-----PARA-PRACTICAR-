@@ -1,32 +1,27 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs';
+import {BaseApi} from '../../shared/infrastructure/base-api';
 import {Specialty} from '../../shared/domain/model/specialty';
 import {Book} from '../domain/model/book.entity';
+import {BooksApiEndpoint} from './books-api-endpoint';
 import {BookAssembler} from './book-assembler';
-import {SubjectResponse} from './subject-response';
 
 /**
- * Infrastructure gateway to the Open Library API.
+ * Infrastructure facade for catalog endpoint operations.
  *
  * @author Alexis Calin Torres Huaman
  */
 @Injectable({providedIn: 'root'})
-export class CatalogApi {
-  private readonly baseUrl = environment.catalogProviderApiBaseUrl;
-  private readonly subjectsEndpoint = environment.catalogProviderSubjectsEndpointPath;
-  private readonly limit = environment.catalogProviderSubjectsLimit;
+export class CatalogApi extends BaseApi {
   private readonly http = inject(HttpClient);
-  private readonly bookAssembler = inject(BookAssembler);
+  private readonly booksEndpoint = new BooksApiEndpoint(this.http, new BookAssembler());
 
   /**
-   * Fetches the books of a specialty.
-   * @param specialty - Specialty used as Open Library subject.
+   * Retrieves the books of a specialty.
+   * @param specialty - Specialty to query.
    * @returns Stream with the book collection.
    */
   getBooksBySpecialty = (specialty: Specialty): Observable<Book[]> =>
-    this.http.get<SubjectResponse>(`${this.baseUrl}${this.subjectsEndpoint}/${specialty}.json`, {
-      params: {limit: this.limit}
-    }).pipe(map(response => this.bookAssembler.toEntitiesFromResponse(response)));
+    this.booksEndpoint.getBySpecialty(specialty);
 }

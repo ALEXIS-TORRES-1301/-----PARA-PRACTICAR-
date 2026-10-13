@@ -1,4 +1,4 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 
@@ -9,25 +9,47 @@ import {TranslatePipe, TranslateService} from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-language-switcher',
-  imports: [MatButtonToggleModule, TranslatePipe],
+  imports: [
+    MatButtonToggleModule,
+    TranslatePipe
+  ],
   templateUrl: './language-switcher.html',
   styleUrl: './language-switcher.css'
 })
 export class LanguageSwitcher {
-  private readonly translate = inject(TranslateService);
+  /**
+   * The currently selected language code.
+   */
+  protected currentLang = 'en';
 
-  /** Currently selected language code. */
-  protected readonly currentLang = signal(this.translate.getCurrentLang() ?? 'en');
+  /**
+   * List of available language codes.
+   */
+  protected languages: string[];
 
-  /** Available language codes. */
-  protected readonly languages = [...this.translate.getLangs()];
+  /**
+   * Translation service instance.
+   */
+  private translate: TranslateService;
+
+  /**
+   * Creates an instance of LanguageSwitcher.
+   * Initializes the current language from the translation service.
+   */
+  constructor() {
+    this.translate = inject(TranslateService);
+    this.currentLang = this.translate.getCurrentLang() ?? 'en';
+    this.languages = [...this.translate.getLangs()];
+  }
 
   /**
    * Changes the application's current language.
-   * @param language - The language code to switch to (e.g., 'en', 'es').
+   * Updates both the translation service and the component's local state.
+   *
+   * @param language - The language code to switch to (e.g., 'en', 'es')
    */
-  protected useLanguage = (language: string): void => {
+  useLanguage = (language: string) => {
     this.translate.use(language);
-    this.currentLang.set(language);
+    this.currentLang = language;
   };
 }

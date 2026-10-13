@@ -1,28 +1,26 @@
-import {Injectable} from '@angular/core';
 import {Book} from '../domain/model/book.entity';
-import {SubjectResponse, WorkResource} from './subject-response';
+import {BookResource, BooksResponse} from './books-response';
 
 /**
- * Maps Open Library work resources into book entities.
+ * Maps catalog book resources into book entities.
  *
  * @author Alexis Calin Torres Huaman
  */
-@Injectable({providedIn: 'root'})
 export class BookAssembler {
   /**
-   * Converts a subject response into book entities.
-   * @param response - The Open Library subject response.
+   * Converts a BooksResponse to an array of Book entities.
+   * @param response - The API response containing books.
    * @returns An array of Book entities.
    */
-  toEntitiesFromResponse = (response: SubjectResponse): Book[] =>
+  toEntitiesFromResponse = (response: BooksResponse): Book[] =>
     (response.works ?? []).map(resource => this.toEntityFromResource(resource));
 
   /**
-   * Converts a work resource into a Book entity, using the first author name.
-   * @param resource - The work resource to convert.
+   * Converts a BookResource to a Book entity, using the name of the first author.
+   * @param resource - The resource to convert.
    * @returns The converted Book entity.
    */
-  toEntityFromResource = (resource: WorkResource): Book =>
+  toEntityFromResource = (resource: BookResource): Book =>
     new Book({
       key: resource.key,
       title: resource.title,

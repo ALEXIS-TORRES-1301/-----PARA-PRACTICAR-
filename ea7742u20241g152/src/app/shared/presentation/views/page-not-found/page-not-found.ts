@@ -1,7 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import {MatButton} from '@angular/material/button';
 import {TranslatePipe} from '@ngx-translate/core';
 
 /**
@@ -11,19 +10,37 @@ import {TranslatePipe} from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-page-not-found',
-  imports: [MatButtonModule, MatIconModule, TranslatePipe],
+  imports: [MatButton, TranslatePipe],
   templateUrl: './page-not-found.html',
   styleUrl: './page-not-found.css'
 })
-export class PageNotFound {
-  private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
+export class PageNotFound implements OnInit {
+  /**
+   * The invalid path that led to this page.
+   */
+  protected invalidPath = '';
 
-  /** The invalid path that led to this page. */
-  protected readonly invalidPath = this.route.snapshot.url.map(segment => segment.path).join('/');
+  /**
+   * Activated route instance.
+   */
+  private route: ActivatedRoute = inject(ActivatedRoute);
 
-  /** Navigates back to the bookstore overview. */
-  protected navigateToBookstoreOverview = (): void => {
-    this.router.navigate(['/bookstores/overview']).then();
-  };
+  /**
+   * Router instance.
+   */
+  private router: Router = inject(Router);
+
+  /**
+   * Initializes the component and sets the invalid path from the route.
+   */
+  ngOnInit() {
+    this.invalidPath = this.route.snapshot.url.map(url => url.path).join('/');
+  }
+
+  /**
+   * Navigates to the bookstore overview.
+   */
+  protected navigateToBookstoreOverview() {
+    this.router.navigate(['bookstores/overview']).then();
+  }
 }
