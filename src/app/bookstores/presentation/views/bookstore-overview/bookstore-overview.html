@@ -1,0 +1,26 @@
+<section class="container-with-spacing" aria-labelledby="bookstore-overview-title">
+  <h1 id="bookstore-overview-title">{{ 'bookstore-overview.title' | translate }}</h1>
+  <p class="lead">{{ 'bookstore-overview.content' | translate }}</p>
+
+  <section aria-labelledby="store-inventory-title">
+    <h2 id="store-inventory-title">{{ 'bookstore-overview.store-inventory' | translate }}</h2>
+
+    @if (loading()) {
+      <mat-progress-bar mode="indeterminate" [attr.aria-label]="'bookstore-overview.loading' | translate"/>
+    }
+    @if (error(); as message) {
+      <p class="error" role="alert">{{ message }}</p>
+    } @else if (!loading() && summaries().length === 0) {
+      <p role="status">{{ 'bookstore-overview.no-bookstores' | translate }}</p>
+    }
+
+    <mat-grid-list [cols]="columns()" rowHeight="400px" gutterSize="16px"
+                   [attr.aria-label]="'bookstore-overview.store-inventory' | translate">
+      @for (summary of summaries(); track summary.bookstore.id) {
+        <mat-grid-tile>
+          <app-bookstore-summary [summary]="summary"/>
+        </mat-grid-tile>
+      }
+    </mat-grid-list>
+  </section>
+</section>

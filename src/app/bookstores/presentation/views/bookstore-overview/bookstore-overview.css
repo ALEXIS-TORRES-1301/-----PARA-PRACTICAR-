@@ -1,0 +1,8 @@
+.lead {
+  font-size: 1.1rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.error {
+  color: #b3261e;
+}

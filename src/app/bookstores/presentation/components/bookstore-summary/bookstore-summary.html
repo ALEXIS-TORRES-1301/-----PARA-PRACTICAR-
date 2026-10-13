@@ -1,0 +1,44 @@
+@let bookstore = summary().bookstore;
+<mat-card class="summary-card" appearance="outlined"
+          role="region" [attr.aria-labelledby]="'bookstore-' + bookstore.id + '-name'">
+  <mat-card-header>
+    <mat-icon mat-card-avatar class="avatar" aria-hidden="true">store</mat-icon>
+    <mat-card-title [id]="'bookstore-' + bookstore.id + '-name'">{{ bookstore.name }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ specialtyKey(bookstore.specialty) | translate }} ·
+      {{ 'bookstore-summary.minimum-copies' | translate: { minimum: bookstore.minimumCopies } }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="content">
+    @if (summary().isEmpty) {
+      <p class="empty" role="status">{{ 'bookstore-summary.empty' | translate }}</p>
+    } @else {
+      <mat-list [attr.aria-label]="bookstore.name" dense>
+        @for (item of summary().items; track item.bookKey) {
+          <mat-list-item [class.low-stock]="bookstore.requiresReplenishment(item.totalCopies)">
+            <span matListItemTitle>{{ item.bookTitle }}</span>
+            <span matListItemLine class="received">
+              {{ 'bookstore-summary.last-received' | translate: { date: (item.lastReceivedAt | date: 'mediumDate' : undefined : currentLang()) } }}
+            </span>
+            <span matListItemMeta class="copies"
+                  [attr.aria-label]="('bookstore-summary.copies' | translate) + ': ' + item.totalCopies">
+              {{ item.totalCopies }}
+            </span>
+          </mat-list-item>
+        }
+      </mat-list>
+    }
+  </mat-card-content>
+
+  <mat-card-footer class="footer">
+    <div class="indicator">
+      <span class="indicator-value">{{ summary().availableTitles }}</span>
+      <span class="indicator-label">{{ 'bookstore-summary.available-titles' | translate }}</span>
+    </div>
+    <div class="indicator" [class.warning]="summary().replenishmentRequired > 0">
+      <span class="indicator-value">{{ summary().replenishmentRequired }}</span>
+      <span class="indicator-label">{{ 'bookstore-summary.replenishment-required' | translate }}</span>
+    </div>
+  </mat-card-footer>
+</mat-card>
