@@ -1,59 +1,75 @@
-# Ea7750u202600000
+# Barnes & Noble Inventory Platform (ea7750u202600000)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2.
+## Overview
+Web application that helps Barnes & Noble monitor book availability across its bookstores and register
+received books. Each bookstore is specialized in one literary specialty, and the books offered for
+reception come from the [Open Library API](https://openlibrary.org/developers/api).
 
-## Development server
+## Authorship
+- **Author:** Alexis Torres
+- **Student code:** u202600000
+- **Repository:** https://github.com/alexis-torres-1301/-----para-practicar-
 
-To start a local development server, run:
+## Features
+- **Toolbar** with the Barnes & Noble logo (Logo.dev Logo API), the platform name and an EN / ES language switcher.
+- **Sidenav** navigation with *Bookstore Overview* and *Receive Books*.
+- **Bookstore Overview** (`/bookstores/overview`): a *Store Inventory* grid with two Bookstore Summary cards per row.
+  Each card lists every book (title and total copies, grouping several Book Stocks of the same book) and shows the
+  *Available Titles* and *Replenishment Required* indicators, or "Empty" when the bookstore has no Book Stocks.
+- **Receive Books** (`/inventory/receipts/new`): reactive form to select the specialty, a book of that specialty
+  (from Open Library) and the copies. The bookstore is assigned from the specialty, `receivedAt` is set automatically,
+  and copies must be an integer between 1 and twice the bookstore minimum.
+- **Page not found** view for unsupported routes, showing the invalid path and a button back to the overview.
+- **Internationalization** in English (default) and Spanish.
+
+## Technologies
+- Angular 22.2.2 (standalone components, Signals, Router with lazy-loaded child routes)
+- TypeScript
+- Angular Material
+- Angular HttpClient
+- ngx-translate (`@ngx-translate/core`, `@ngx-translate/http-loader`)
+- json-server 0.17.4 (Fake API)
+- Open Library API and Logo.dev Logo API
+
+## Project structure
+The solution follows a domain-driven, layered architecture. Each bounded context has `domain`, `infrastructure`,
+`application` and `presentation` layers.
+
+| Bounded context | Responsibility |
+|---|---|
+| `shared` | Base entity, assembler and API endpoint types, `Specialty`, Logo.dev API, layout, language switcher, page not found |
+| `bookstores` | `Bookstore` entity, `BookstoreSummary` read model, bookstore API and store, overview view and summary card |
+| `inventory` | `BookStock` entity, book stock API and store, Receive Books form |
+| `catalog` | `Book` entity, Open Library API, assembler and store |
+
+## Configuration
+Endpoints and keys are defined in `src/environments/environment*.ts`:
+- `platformProviderApiBaseUrl`: Fake API base URL (`http://localhost:3000`).
+- `catalogProviderApiBaseUrl`: Open Library base URL.
+- `logoProviderPublishableKey`: Logo.dev publishable key. Replace it with your own key from [Logo.dev](https://logo.dev/).
+
+## Running the application
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the Fake API (json-server 0.17.4):
+
+```bash
+cd server
+npx json-server --watch db.json
+```
+
+In another terminal, start the development server and open `http://localhost:4200/`:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
 ## Building
-
-To build the project run:
 
 ```bash
 ng build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
